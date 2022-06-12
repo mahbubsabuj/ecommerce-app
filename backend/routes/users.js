@@ -2,7 +2,7 @@ const { User } = require("../models/user");
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
-require("dotenv/config");
+const jwt = require("jsonwebtoken");
 const salt = process.env.SALT;
 
 router.get("/", async (req, res) => {
@@ -56,8 +56,9 @@ router.post("/", async (req, res) => {
     res
       .status(400)
       .json({ success: false, message: "the user cannot be created!" });
+  } else {
+    res.status(200).send(user);
   }
-  res.send(user);
 });
 
 router.put("/:id", async (req, res) => {
@@ -80,7 +81,9 @@ router.put("/:id", async (req, res) => {
     {
       name,
       email,
-      passwordHash: password ? bcrypt.hashSync(password, +salt) : userPrev.passwordHash,
+      passwordHash: password
+        ? bcrypt.hashSync(password, +salt)
+        : userPrev.passwordHash,
       street,
       apartment,
       city,
@@ -95,8 +98,63 @@ router.put("/:id", async (req, res) => {
     res
       .status(400)
       .json({ success: false, message: "the user cannot be updated!" });
+  } else {
+    res.status(200).send(user);
   }
-  res.status(200).send(user);
 });
 
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  const user = await User.findOne({ email: email });
+  if (!user) {
+    res.status(400).json({ success: false, message: "The user not found!" });
+  }
+  if (user && bcrypt.compareSync(password, user.passwordHash)) {
+    const token = jwt.sign(
+      {
+        userId: user.id,
+        isAdmin: user.isAdmin,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1w",
+      }
+    );
+    res.status(200).json({
+      success: true,
+      message: "User is authenticated",
+      user: user.email,
+      token: token,
+    });
+  } else {
+    res.status(400).json({ success: false, message: "The password is wrong!" });
+  }
+});
+
+router.get("/get/count", async (req, res) => {
+  const userCount = await User.countDocuments();
+  if (!userCount) {
+    res.status(500).json({ success: false, message: "" });
+  }
+  res.status(200).json({ success: true, userCount: userCount });
+});
+
+
+
+router.delete("/:id", async (req, res) => {
+  const id = req.params.id;
+  if (!mongoose.isValidObjectId(id)) {
+    res.status(400).json({ success: false, message: "Invalid user id!" });
+  }
+  const deletedUser = await User.findByIdAndDelete(id);
+  if (!deletedUser) {
+    res.status(404).json({
+      success: false,
+      message: "The user with given id cannot be deleted!",
+    });
+  }
+  res
+    .status(500)
+    .json({ success: true, message: "user deleted successfully" });
+});
 module.exports = router;

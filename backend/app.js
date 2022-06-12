@@ -3,6 +3,8 @@ const app = express();
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const authJwt = require('./helpers/jwt');
+const errorHandler = require('./helpers/errorHandler');
 require('dotenv/config');
 
 app.use(cors());
@@ -11,6 +13,12 @@ app.options('*', cors())
 //middleware
 app.use(express.json());
 app.use(morgan('tiny'));
+app.use(authJwt());
+app.use(errorHandler);
+// app.use((error, req, res, next) => {
+    
+//     res.status(500).json({success: false, message: 'server error'})
+// })
 
 
 //Routes
