@@ -8,6 +8,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { ProductListComponent } from './pages/product-list/product-list.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { UiModule } from '@client/ui';
+import { ProductsModule } from '@client/products';
 
 const routes: Routes = [
   {
@@ -29,7 +31,7 @@ const routes: Routes = [
     HeaderComponent,
     FooterComponent,
   ],
-  imports: [BrowserModule, RouterModule.forRoot(routes)],
+  imports: [BrowserModule, RouterModule.forRoot(routes), ProductsModule, UiModule],
   providers: [],
   bootstrap: [AppComponent],
 })
