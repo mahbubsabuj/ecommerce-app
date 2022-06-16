@@ -1,12 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'client-deshboard',
+  selector: 'admin-deshboard',
   templateUrl: './deshboard.component.html',
-  styleUrls: ['./deshboard.component.scss'],
 })
-export class DeshboardComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
-}
+export class DeshboardComponent {}

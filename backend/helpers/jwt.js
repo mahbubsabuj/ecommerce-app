@@ -11,16 +11,17 @@ function authJwt() {
     })
     .unless({
       path: [
-        {
-          url: new RegExp(/\/api\/v1\/products(.*)/),
-          methods: ["GET", "OPTIONS"],
-        },
-        {
-          url: new RegExp(/\/api\/v1\/categories(.*)/),
-          methods: ["GET", "OPTIONS"],
-        },
-        `${api}/users/login`,
-        `${api}/users/register`,
+        // {
+        //   url: new RegExp(/\/api\/v1\/products(.*)/),
+        //   methods: ["GET", "OPTIONS"],
+        // },
+        // {
+        //   url: new RegExp(/\/api\/v1\/categories(.*)/),
+        //   methods: ["GET", "OPTIONS"],
+        // },
+        // `${api}/users/login`,
+        // `${api}/users/register`,
+        {url: /(.*)/}
       ],
     });
 }
