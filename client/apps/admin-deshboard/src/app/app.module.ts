@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -8,16 +9,21 @@ import { RouterModule, Routes } from '@angular/router';
 import { ShellComponent } from './shared/shell/shell.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { DeshboardComponent } from './pages/deshboard/deshboard.component';
-import { CategoriesListComponent } from './categories/categories-list/categories-list.component';
+import { CategoriesListComponent } from './pages/categories/categories-list/categories-list.component';
 
 import { CardModule } from 'primeng/card';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
-import {InputTextModule} from 'primeng/inputtext';
+import { InputTextModule } from 'primeng/inputtext';
 import { CategoriesService } from '@client/products';
-import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
+import { CategoriesFormComponent } from './pages/categories/categories-form/categories-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+import { ColorPickerModule } from 'primeng/colorpicker';
 
 const routes: Routes = [
   {
@@ -26,7 +32,8 @@ const routes: Routes = [
     children: [
       { path: 'deshboard', component: DeshboardComponent },
       { path: 'categories', component: CategoriesListComponent },
-      {path: 'categories/form', component: CategoriesFormComponent}
+      { path: 'categories/form', component: CategoriesFormComponent },
+      { path: 'categories/form/:id', component: CategoriesFormComponent },
     ],
   },
 ];
@@ -43,6 +50,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
     HttpClientModule,
     FormsModule,
@@ -51,9 +59,12 @@ const routes: Routes = [
     ToolbarModule,
     ButtonModule,
     TableModule,
-    InputTextModule
+    InputTextModule,
+    ToastModule,
+    ConfirmDialogModule,
+    ColorPickerModule,
   ],
-  providers: [CategoriesService],
+  providers: [CategoriesService, MessageService, ConfirmationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
