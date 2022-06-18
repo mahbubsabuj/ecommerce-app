@@ -1,1 +1,139 @@
-<p>products-form works!</p>
+<!-- <p-toast></p-toast> -->
+<div class="admin-page">
+  <p-card
+    [header]="isEditingMode ? 'Edit Product' : 'Add Product'"
+    subheader="You can add or edit product"
+  >
+    <div class="p-grid mb-5">
+      <div class="p-col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-left"></div>
+          <div class="p-toolbar-group-right">
+            <button
+              pButton
+              type="button"
+              [label]="isEditingMode ? 'Update' : 'Create'"
+              class="p-button-primary mr-2"
+              (click)="onFormSubmit()"
+            ></button>
+            <button
+              pButton
+              type="button"
+              label="Cancel"
+              class="p-button-warning"
+              routerLink="/categories"
+            ></button>
+          </div>
+        </p-toolbar>
+      </div>
+    </div>
+    <div class="p-grid">
+      <div class="p-col-12">
+        <form [formGroup]="form">
+          <div class="formgrid grid">
+            <div class="field col">
+              <label for="name">Name</label>
+              <input
+                id="name"
+                type="text"
+                formControlName="name"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+              />
+              <small
+                *ngIf="form.controls['name'].invalid && isFormSubmitted"
+                class="p-error"
+                >Name is required</small
+              >
+            </div>
+            <div class="field col">
+              <label for="icon">Brand</label>
+              <input
+                id="icon"
+                type="text"
+                formControlName="brand"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+              />
+              <small
+                *ngIf="form.controls['brand'].invalid && isFormSubmitted"
+                class="p-error"
+                >Brand is required</small
+              >
+            </div>
+            <div class="field col">
+              <label for="withoutgrouping">Price</label>
+              <br />
+              <p-inputNumber
+                formControlName="price"
+                mode="decimal"
+                inputId="price"
+                [useGrouping]="false"
+              >
+              </p-inputNumber>
+              <small
+                *ngIf="form.controls['price'].invalid && isFormSubmitted"
+                class="p-error"
+                >Price is required</small
+              >
+            </div>
+          </div>
+          <div class="formgrid grid">
+            <div class="field col">
+              <label for="withoutgrouping">Count in stock</label>
+              <br />
+              <p-inputNumber
+                formControlName="price"
+                mode="decimal"
+                inputId="price"
+                [useGrouping]="false"
+              >
+              </p-inputNumber>
+              <small
+                *ngIf="form.controls['countInStock'].invalid && isFormSubmitted"
+                class="p-error"
+                >Price is required</small
+              >
+            </div>
+            <div class="field col">
+              <label for="withoutgrouping">Category</label>
+              <br />
+              <p-dropdown [options]="categories" formControlName="category" [filter]="true" filterBy="name"optionLabel="name" placeholder="Select a category"></p-dropdown>
+
+              <small
+                *ngIf="form.controls['category'].invalid && isFormSubmitted"
+                class="p-error"
+                >Category is required</small
+              >
+            </div>
+            <div class="field col">
+                <label for="withoutgrouping">Is Featured</label>
+                <br />
+                <p-inputSwitch formControlName="isFeatured"></p-inputSwitch>
+
+                <small
+                  *ngIf="form.controls['isFeatured'].invalid && isFormSubmitted"
+                  class="p-error"
+                  >Category is required</small
+                >
+              </div>
+            
+
+            <div class="p-field col-12">
+              <label for="withoutgrouping">Description</label>
+              <br />
+              <textarea
+                pInputTextarea
+                formControlName="description"
+                style="width: 100%"
+              ></textarea>
+              <small
+                *ngIf="form.controls['description'].invalid && isFormSubmitted"
+                class="p-error"
+                >Description is required</small
+              >
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </p-card>
+</div>

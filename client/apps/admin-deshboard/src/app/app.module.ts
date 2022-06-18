@@ -24,8 +24,13 @@ import { MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { ColorPickerModule } from 'primeng/colorpicker';
+import { InputNumberModule } from 'primeng/inputnumber';
 import { ProductsListComponent } from './pages/products/products-list/products-list.component';
 import { ProductsFormComponent } from './pages/products/products-form/products-form.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { DropdownModule } from 'primeng/dropdown';
 
 const routes: Routes = [
   {
@@ -70,6 +75,11 @@ const routes: Routes = [
     ToastModule,
     ConfirmDialogModule,
     ColorPickerModule,
+    InputNumberModule,
+    InputTextareaModule,
+    ToggleButtonModule,
+    InputSwitchModule,
+    DropdownModule,
   ],
   providers: [CategoriesService, MessageService, ConfirmationService],
   bootstrap: [AppComponent],

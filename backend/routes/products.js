@@ -69,6 +69,7 @@ router.post("/", upload.single("image"), async (req, res) => {
   const fileName = req.file.filename;
   const {
     name,
+    brand,
     description,
     richDescription,
     images,
@@ -90,6 +91,7 @@ router.post("/", upload.single("image"), async (req, res) => {
   }
   let product = new Product({
     name,
+    brand,
     description,
     richDescription,
     image: basePath + fileName,
@@ -118,6 +120,7 @@ router.put("/:id", upload.single("image"), async (req, res) => {
   }
   const {
     name,
+    brand,
     description,
     richDescription,
     images,
@@ -142,6 +145,7 @@ router.put("/:id", upload.single("image"), async (req, res) => {
     id,
     {
       name,
+      brand,
       description,
       richDescription,
       image: basePath + fileName,
