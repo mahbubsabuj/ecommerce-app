@@ -17,7 +17,7 @@ export class CategoriesListComponent implements OnInit {
     private routerService: Router
   ) {}
   ngOnInit(): void {
-    this.getCategories();
+    this._getCategories();
   }
   updateCategory(id: string) {
     this.routerService.navigateByUrl(`/categories/form/${id}`);
@@ -35,7 +35,7 @@ export class CategoriesListComponent implements OnInit {
               summary: 'Success',
               detail: 'Category deleted successfully',
             });
-            this.getCategories();
+            this._getCategories();
           },
           error: () => {
             this.messageService.add({
@@ -51,7 +51,7 @@ export class CategoriesListComponent implements OnInit {
       },
     });
   }
-  private getCategories() {
+  private _getCategories() {
     this.categoriesService.getCategories().subscribe({
       next: (response) => {
         this.categories = response;

@@ -24,6 +24,8 @@ import { MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { ColorPickerModule } from 'primeng/colorpicker';
+import { ProductsListComponent } from './pages/products/products-list/products-list.component';
+import { ProductsFormComponent } from './pages/products/products-form/products-form.component';
 
 const routes: Routes = [
   {
@@ -34,6 +36,9 @@ const routes: Routes = [
       { path: 'categories', component: CategoriesListComponent },
       { path: 'categories/form', component: CategoriesFormComponent },
       { path: 'categories/form/:id', component: CategoriesFormComponent },
+      { path: 'products', component: ProductsListComponent },
+      { path: 'products/form', component: ProductsFormComponent },
+      { path: 'products/form/:id', component: ProductsFormComponent },
     ],
   },
 ];
@@ -47,6 +52,8 @@ const routes: Routes = [
     DeshboardComponent,
     CategoriesListComponent,
     CategoriesFormComponent,
+    ProductsListComponent,
+    ProductsFormComponent,
   ],
   imports: [
     BrowserModule,

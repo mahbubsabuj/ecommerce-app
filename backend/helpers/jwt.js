@@ -11,6 +11,7 @@ function authJwt() {
     })
     .unless({
       path: [
+        // {url: new RegExp(/\/public\/uploads(.*)/), method: ['GET', 'POST']}
         // {
         //   url: new RegExp(/\/api\/v1\/products(.*)/),
         //   methods: ["GET", "OPTIONS"],
