@@ -20,6 +20,7 @@ export class ProductsFormComponent implements OnInit {
     name: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
     richDescription: new FormControl(''),
+    
     image: new FormControl('', Validators.required),
     brand: new FormControl('', Validators.required),
     category: new FormControl('', Validators.required),
@@ -66,13 +67,13 @@ export class ProductsFormComponent implements OnInit {
   private _updateProduct(product: FormData) {
     this.productsService.updateProduct(this.id, product).subscribe({
       next: () => {
-        this._successToast('product updated successfully')
+        this._successToast('product updated successfully');
         this._goBack();
       },
       error: () => {
-        this._errorToast('product cannot be updated')
-      }
-    })
+        this._errorToast('product cannot be updated');
+      },
+    });
   }
   private _goBack() {
     timer(1500).subscribe(() => {
@@ -87,19 +88,30 @@ export class ProductsFormComponent implements OnInit {
           this.id = params['id'];
           this.productsService.getProduct(params['id']).subscribe({
             next: (response) => {
-              this.form.controls['name'].setValue(response.name);
-              this.form.controls['description'].setValue(response.description);
-              this.form.controls['richDescription'].setValue(
-                response.richDescription
-              );
-              this.form.controls['image'].setValue(response.image);
-              this.form.controls['brand'].setValue(response.brand);
-              this.form.controls['category'].setValue(response.category._id);
-              this.form.controls['price'].setValue(response.price);
-              this.form.controls['countInStock'].setValue(
-                response.countInStock
-              );
-              this.form.controls['isFeatured'].setValue(response.isFeatured);
+              this.form.setValue({
+                name: response.name,
+                description: response.description,
+                richDescription: response.richDescription,
+                image: response.image,
+                brand: response.brand,
+                category: response.category._id,
+                price: response.price,
+                countInStock: response.countInStock,
+                isFeatured: response.isFeatured,
+              });
+              // this.form.controls['name'].setValue(response.name);
+              // this.form.controls['description'].setValue(response.description);
+              // this.form.controls['richDescription'].setValue(
+              //   response.richDescription
+              // );
+              // this.form.controls['image'].setValue(response.image);
+              // this.form.controls['brand'].setValue(response.brand);
+              // this.form.controls['category'].setValue(response.category._id);
+              // this.form.controls['price'].setValue(response.price);
+              // this.form.controls['countInStock'].setValue(
+              //   response.countInStock
+              // );
+              // this.form.controls['isFeatured'].setValue(response.isFeatured);
               this.imageDisplay = response.image;
             },
             error: () => {

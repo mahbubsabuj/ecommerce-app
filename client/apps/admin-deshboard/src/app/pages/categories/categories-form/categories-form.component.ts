@@ -69,20 +69,6 @@ export class CategoriesFormComponent implements OnInit {
       },
     });
   }
-  private _successToast(message: string) {
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Success',
-      detail: message,
-    });
-  }
-  private _errorToast(message: string) {
-    this.messageService.add({
-      severity: 'error',
-      summary: 'Error',
-      detail: message,
-    });
-  }
   private _checkEditMode() {
     this.activatedRouteService.params.subscribe({
       next: (params) => {
@@ -102,4 +88,20 @@ export class CategoriesFormComponent implements OnInit {
       },
     });
   }
+  
+  private _successToast(message: string) {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: message,
+    });
+  }
+  private _errorToast(message: string) {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: message,
+    });
+  }
+  
 }

@@ -1,5 +1,6 @@
 const { User } = require("../models/user");
 const express = require("express");
+const mongoose = require("mongoose");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -139,8 +140,6 @@ router.get("/get/count", async (req, res) => {
   res.status(200).json({ success: true, userCount: userCount });
 });
 
-
-
 router.delete("/:id", async (req, res) => {
   const id = req.params.id;
   if (!mongoose.isValidObjectId(id)) {
@@ -153,8 +152,6 @@ router.delete("/:id", async (req, res) => {
       message: "The user with given id cannot be deleted!",
     });
   }
-  res
-    .status(500)
-    .json({ success: true, message: "user deleted successfully" });
+  res.status(200).json({ success: true, message: "user deleted successfully" });
 });
 module.exports = router;
