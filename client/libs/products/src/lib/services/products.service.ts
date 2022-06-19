@@ -17,16 +17,16 @@ export class ProductsService {
       `${environment.API_URL}/products/${id}`
     );
   }
-  createProduct(Product: Product): Observable<Product> {
+  createProduct(product: FormData): Observable<Product> {
     return this.httpService.post<Product>(
       `${environment.API_URL}/products`,
-      Product
+      product
     );
   }
-  updateProduct(id: string, Product: Product): Observable<Product> {
+  updateProduct(id: string, product: FormData): Observable<Product> {
     return this.httpService.put<Product>(
       `${environment.API_URL}/products/${id}`,
-      Product
+      product
     );
   }
   deleteProduct(id: string): Observable<unknown> {

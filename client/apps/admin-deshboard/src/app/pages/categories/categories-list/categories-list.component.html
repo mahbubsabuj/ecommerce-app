@@ -25,6 +25,8 @@
         <p-table
           [value]="categories"
           responsiveLayout="scroll"
+          [paginator]="true"
+          [rows]="10"
           styleClass="p-datatable-gridlines"
         >
           <ng-template pTemplate="header">

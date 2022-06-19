@@ -1,8 +1,11 @@
 import { Category } from './category.model';
 
 export interface Product {
+  _id: string,
   id: string;
   name: string;
+  brand: string,
+  description: string;
   richDescription: string;
   image: string;
   images: string[];

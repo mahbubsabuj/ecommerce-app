@@ -118,6 +118,7 @@ router.put("/:id", upload.single("image"), async (req, res) => {
   if (!mongoose.isValidObjectId(id)) {
     res.status(400).json({ success: false, message: "Invalid product id!" });
   }
+  const prevProduct = await Product.findById(id);
   const {
     name,
     brand,
@@ -136,11 +137,11 @@ router.put("/:id", upload.single("image"), async (req, res) => {
     res.status(400).json({ success: false, message: "Invalid category!" });
   }
   const file = req.file;
-  if (!file) {
-    return res.status(400).send("No image in the request");
-  }
   const basePath = `${req.protocol}://${req.get("host")}/public/uploads/`;
-  const fileName = req.file.filename;
+  let path = prevProduct.image;
+  if (file) {
+    path = basePath + req.file.filename;
+  }
   const product = await Product.findByIdAndUpdate(
     id,
     {
@@ -148,7 +149,7 @@ router.put("/:id", upload.single("image"), async (req, res) => {
       brand,
       description,
       richDescription,
-      image: basePath + fileName,
+      image: path,
       images,
       price,
       category,

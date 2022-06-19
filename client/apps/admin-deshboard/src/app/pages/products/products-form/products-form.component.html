@@ -1,4 +1,4 @@
-<!-- <p-toast></p-toast> -->
+<p-toast></p-toast>
 <div class="admin-page">
   <p-card
     [header]="isEditingMode ? 'Edit Product' : 'Add Product'"
@@ -46,7 +46,7 @@
               >
             </div>
             <div class="field col">
-              <label for="icon">Brand</label>
+              <label for="brand">Brand</label>
               <input
                 id="icon"
                 type="text"
@@ -60,7 +60,7 @@
               >
             </div>
             <div class="field col">
-              <label for="withoutgrouping">Price</label>
+              <label for="price">Price</label>
               <br />
               <p-inputNumber
                 formControlName="price"
@@ -78,10 +78,10 @@
           </div>
           <div class="formgrid grid">
             <div class="field col">
-              <label for="withoutgrouping">Count in stock</label>
+              <label for="countInStock">Count in stock</label>
               <br />
               <p-inputNumber
-                formControlName="price"
+                formControlName="countInStock"
                 mode="decimal"
                 inputId="price"
                 [useGrouping]="false"
@@ -90,13 +90,21 @@
               <small
                 *ngIf="form.controls['countInStock'].invalid && isFormSubmitted"
                 class="p-error"
-                >Price is required</small
+                >Count in stock is required</small
               >
             </div>
             <div class="field col">
               <label for="withoutgrouping">Category</label>
               <br />
-              <p-dropdown [options]="categories" formControlName="category" [filter]="true" filterBy="name"optionLabel="name" placeholder="Select a category"></p-dropdown>
+              <p-dropdown
+                [options]="categories"
+                formControlName="category"
+                [filter]="true"
+                filterBy="name"
+                optionLabel="name"
+                optionValue="_id"
+                placeholder="Select a category"
+              ></p-dropdown>
 
               <small
                 *ngIf="form.controls['category'].invalid && isFormSubmitted"
@@ -105,19 +113,18 @@
               >
             </div>
             <div class="field col">
-                <label for="withoutgrouping">Is Featured</label>
-                <br />
-                <p-inputSwitch formControlName="isFeatured"></p-inputSwitch>
+              <label for="withoutgrouping">Is Featured</label>
+              <br />
+              <p-inputSwitch formControlName="isFeatured"></p-inputSwitch>
 
-                <small
-                  *ngIf="form.controls['isFeatured'].invalid && isFormSubmitted"
-                  class="p-error"
-                  >Category is required</small
-                >
-              </div>
-            
+              <small
+                *ngIf="form.controls['isFeatured'].invalid && isFormSubmitted"
+                class="p-error"
+                >Category is required</small
+              >
+            </div>
 
-            <div class="p-field col-12">
+            <div class="field col-12">
               <label for="withoutgrouping">Description</label>
               <br />
               <textarea
@@ -130,6 +137,29 @@
                 class="p-error"
                 >Description is required</small
               >
+            </div>
+
+            <div class="field col-12">
+              <label for="withoutgrouping">Full Description</label>
+              <br />
+              <p-editor
+                formControlName="richDescription"
+                [style]="{ height: '320px' }"
+              ></p-editor>
+            </div>
+            <div class="field col-12">
+              <label for="image">Main Image</label>
+              <br />
+              <input type="file" accept="image/*"(change)="onImageUpload($event)"/>
+              <br>
+              <small
+              *ngIf="form.controls['image'].invalid && isFormSubmitted"
+              class="p-error"
+              >Image is required</small
+            >
+              <div class="col-2 mt-2 pl-0">
+                <img style="width: 100%" [src]="imageDisplay" alt="" class="">
+              </div>
             </div>
           </div>
         </form>
