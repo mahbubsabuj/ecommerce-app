@@ -23,7 +23,6 @@ export class ProductsListComponent implements OnInit {
     this.productsService.getProducts().subscribe({
       next: (response) => {
         this.products = response;
-        console.log(this.products);
       },
       error: (error) => {
         console.log(error);
@@ -33,8 +32,7 @@ export class ProductsListComponent implements OnInit {
   updateProduct(id: string) {
     this.routerService.navigateByUrl(`/products/form/${id}`);
   }
-  deleteProduct(id: string) {
-    console.log(id);
+  deleteProduct(id: string) {;
     this.confirmationService.confirm({
       message: 'Do you want to delete this category?',
       header: 'Delete Category',
@@ -49,9 +47,6 @@ export class ProductsListComponent implements OnInit {
             this._errorToast('Product cannot be deleted');
           },
         });
-      },
-      reject: () => {
-        //
       },
     });
   }
