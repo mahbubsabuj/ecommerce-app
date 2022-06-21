@@ -4,6 +4,7 @@
   "projects": {
     "admin-deshboard": "apps/admin-deshboard",
     "admin-deshboard-e2e": "apps/admin-deshboard-e2e",
+    "deshboard": "libs/deshboard",
     "orders": "libs/orders",
     "products": "libs/products",
     "shop": "apps/shop",

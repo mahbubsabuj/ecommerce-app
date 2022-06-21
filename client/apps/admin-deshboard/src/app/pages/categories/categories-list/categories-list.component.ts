@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CategoriesService, Category } from '@client/products';
 import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'admin-categories-list',
   templateUrl: './categories-list.component.html',
 })
-export class CategoriesListComponent implements OnInit {
+export class CategoriesListComponent implements OnInit, OnDestroy {
   categories: Category[] = [];
+  categorySub$: Subject<Category[]> = new Subject();
   constructor(
     private categoriesService: CategoriesService,
     private messageService: MessageService,
@@ -18,6 +20,9 @@ export class CategoriesListComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this._getCategories();
+  }
+  ngOnDestroy(): void {
+    this.categorySub$.complete();
   }
   updateCategory(id: string) {
     this.routerService.navigateByUrl(`/categories/form/${id}`);
@@ -52,13 +57,16 @@ export class CategoriesListComponent implements OnInit {
     });
   }
   private _getCategories() {
-    this.categoriesService.getCategories().subscribe({
-      next: (response) => {
-        this.categories = response;
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+    this.categoriesService
+      .getCategories()
+      .pipe(takeUntil(this.categorySub$))
+      .subscribe({
+        next: (categories) => {
+          this.categories = categories;
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
   }
 }

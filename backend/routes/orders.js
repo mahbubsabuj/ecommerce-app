@@ -131,7 +131,7 @@ router.delete("/:id", async (req, res) => {
 
 router.get("/get/userorders/:userId", async (req, res) => {
   const id = req.params.userId;
-  const userOrderList = await Order.find({user: id})
+  const userOrderList = await Order.find({ user: id })
     .populate({
       path: "orderItems",
       populate: {
@@ -146,5 +146,27 @@ router.get("/get/userorders/:userId", async (req, res) => {
   return res.status(200).send(userOrderList);
 });
 
+router.get("/get/totalsales", async (req, res) => {
+  const totalSales = await Order.aggregate([
+    { $group: { _id: null, totalsales: { $sum: "$totalPrice" } } },
+  ]);
+
+  if (!totalSales) {
+    return res.status(400).send("The order sales cannot be generated");
+  }
+
+  res.send({ totalSales: totalSales.pop().totalsales });
+});
+
+router.get("/get/count", async (req, res) => {
+  const orderCount = await Order.countDocuments();
+
+  if (!orderCount) {
+    res.status(500).json({ success: false });
+  }
+  res.send({
+    orderCount: orderCount,
+  });
+});
 
 module.exports = router;

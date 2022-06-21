@@ -1,33 +1,29 @@
 {
   "projectType": "library",
-  "sourceRoot": "libs/ui/src",
+  "sourceRoot": "libs/deshboard/src",
   "prefix": "client",
   "targets": {
     "build": {
       "executor": "@nrwl/angular:ng-packagr-lite",
-      "outputs": [
-        "dist/libs/ui"
-      ],
+      "outputs": ["dist/libs/deshboard"],
       "options": {
-        "project": "libs/ui/ng-package.json"
+        "project": "libs/deshboard/ng-package.json"
       },
       "configurations": {
         "production": {
-          "tsConfig": "libs/ui/tsconfig.lib.prod.json"
+          "tsConfig": "libs/deshboard/tsconfig.lib.prod.json"
         },
         "development": {
-          "tsConfig": "libs/ui/tsconfig.lib.json"
+          "tsConfig": "libs/deshboard/tsconfig.lib.json"
         }
       },
       "defaultConfiguration": "production"
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/ui"
-      ],
+      "outputs": ["coverage/libs/deshboard"],
       "options": {
-        "jestConfig": "libs/ui/jest.config.ts",
+        "jestConfig": "libs/deshboard/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -35,8 +31,8 @@
       "executor": "@nrwl/linter:eslint",
       "options": {
         "lintFilePatterns": [
-          "libs/ui/**/*.ts",
-          "libs/ui/**/*.html"
+          "libs/deshboard/**/*.ts",
+          "libs/deshboard/**/*.html"
         ]
       }
     }

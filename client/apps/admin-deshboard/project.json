@@ -5,7 +5,9 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/admin-deshboard",
         "index": "apps/admin-deshboard/src/index.html",
@@ -86,7 +88,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/admin-deshboard"],
+      "outputs": [
+        "coverage/apps/admin-deshboard"
+      ],
       "options": {
         "jestConfig": "apps/admin-deshboard/jest.config.ts",
         "passWithNoTests": true

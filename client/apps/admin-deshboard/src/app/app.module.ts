@@ -5,7 +5,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
-import { RouterModule, Routes } from '@angular/router';
 import { ShellComponent } from './shared/shell/shell.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { DeshboardComponent } from './pages/deshboard/deshboard.component';
@@ -32,7 +31,7 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
-import { AuthGuardService, JwtInterceptor, UsersModule } from '@client/users';
+import { JwtInterceptor, UsersModule } from '@client/users';
 import { UsersListComponent } from './pages/users/users-list/users-list.component';
 import { UsersFormComponent } from './pages/users/users-form/users-form.component';
 import { TagModule } from 'primeng/tag';
@@ -40,28 +39,7 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
 import { OrdersDetailComponent } from './pages/orders/orders-detail/orders-detail.component';
 import { FieldsetModule } from 'primeng/fieldset';
-
-const routes: Routes = [
-  {
-    path: '',
-    component: ShellComponent,
-    canActivate: [AuthGuardService],
-    children: [
-      { path: 'deshboard', component: DeshboardComponent },
-      { path: 'categories', component: CategoriesListComponent },
-      { path: 'categories/form', component: CategoriesFormComponent },
-      { path: 'categories/form/:id', component: CategoriesFormComponent },
-      { path: 'products', component: ProductsListComponent },
-      { path: 'products/form', component: ProductsFormComponent },
-      { path: 'products/form/:id', component: ProductsFormComponent },
-      { path: 'users', component: UsersListComponent },
-      { path: 'users/form', component: UsersFormComponent },
-      { path: 'users/form/:id', component: UsersFormComponent },
-      { path: 'orders', component: OrdersListComponent },
-      { path: 'orders/:id', component: OrdersDetailComponent },
-    ],
-  },
-];
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -78,11 +56,12 @@ const routes: Routes = [
     UsersFormComponent,
     OrdersListComponent,
     OrdersDetailComponent,
+    DeshboardComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
+    AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

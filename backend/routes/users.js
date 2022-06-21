@@ -110,7 +110,7 @@ router.post("/login", async (req, res) => {
   if (!user) {
     res.status(400).json({ success: false, message: "The user not found!" });
   }
-  console.log(email, password)
+  console.log(email, password);
   if (user && bcrypt.compareSync(password, user.passwordHash)) {
     const token = jwt.sign(
       {
@@ -133,14 +133,6 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.get("/get/count", async (req, res) => {
-  const userCount = await User.countDocuments();
-  if (!userCount) {
-    res.status(500).json({ success: false, message: "" });
-  }
-  res.status(200).json({ success: true, userCount: userCount });
-});
-
 router.delete("/:id", async (req, res) => {
   const id = req.params.id;
   if (!mongoose.isValidObjectId(id)) {
@@ -155,4 +147,13 @@ router.delete("/:id", async (req, res) => {
   }
   res.status(200).json({ success: true, message: "user deleted successfully" });
 });
+
+router.get("/get/count", async (req, res) => {
+  const userCount = await User.countDocuments();
+  if (!userCount) {
+    res.status(500).json({ success: false, message: "" });
+  }
+  res.status(200).json({ success: true, userCount: userCount });
+});
+
 module.exports = router;

@@ -5,7 +5,9 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/shop",
         "index": "apps/shop/src/index.html",
@@ -13,8 +15,13 @@
         "polyfills": "apps/shop/src/polyfills.ts",
         "tsConfig": "apps/shop/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/shop/src/favicon.ico", "apps/shop/src/assets"],
-        "styles": ["apps/shop/src/styles.scss"],
+        "assets": [
+          "apps/shop/src/favicon.ico",
+          "apps/shop/src/assets"
+        ],
+        "styles": [
+          "apps/shop/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -71,12 +78,17 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": ["apps/shop/**/*.ts", "apps/shop/**/*.html"]
+        "lintFilePatterns": [
+          "apps/shop/**/*.ts",
+          "apps/shop/**/*.html"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/shop"],
+      "outputs": [
+        "coverage/apps/shop"
+      ],
       "options": {
         "jestConfig": "apps/shop/jest.config.ts",
         "passWithNoTests": true
