@@ -11,8 +11,8 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { UiModule } from '@client/ui';
 import { ProductsModule } from '@client/products';
-import {AccordionModule} from 'primeng/accordion';
-
+import { AccordionModule } from 'primeng/accordion';
+import { NavComponent } from './shared/nav/nav.component';
 const routes: Routes = [
   {
     path: '',
@@ -32,6 +32,7 @@ const routes: Routes = [
     ProductListComponent,
     HeaderComponent,
     FooterComponent,
+    NavComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,8 +40,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     ProductsModule,
     UiModule,
-    AccordionModule
-    
+    AccordionModule,
+    ProductsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
