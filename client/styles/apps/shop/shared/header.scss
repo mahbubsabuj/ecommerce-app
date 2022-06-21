@@ -1,14 +1,18 @@
 header {
+    margin-bottom: 25px;
     .logo {
         img {
             width: 60px;
         }
     }
-}
-
-.tools {
-    padding-top: 10px;
-    .pi {
-        margin-right: 10px
+    .search {
+        padding-top: 25px;
+    }
+    .tools {
+        padding-top: 30px;
+        .pi {
+            margin-right: 10px
+        }
     }
 }
+
