@@ -110,6 +110,7 @@ router.post("/login", async (req, res) => {
   if (!user) {
     res.status(400).json({ success: false, message: "The user not found!" });
   }
+  console.log(email, password)
   if (user && bcrypt.compareSync(password, user.passwordHash)) {
     const token = jwt.sign(
       {
