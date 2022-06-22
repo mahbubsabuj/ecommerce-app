@@ -5,7 +5,6 @@ import { Subject, takeUntil } from 'rxjs';
 @Component({
   selector: 'admin-deshboard',
   templateUrl: './deshboard.component.html',
-  styleUrls: ['./deshboard.component.scss'],
 })
 export class DeshboardComponent implements OnInit, OnDestroy {
   subscriptions$: Subject<boolean> = new Subject<boolean>();

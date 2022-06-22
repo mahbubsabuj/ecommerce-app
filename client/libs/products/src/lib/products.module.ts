@@ -8,8 +8,11 @@ import { ProductItemComponent } from './components/product-item/product-item.com
 import { FeaturedProductsComponent } from './components/featured-products/featured-products.component';
 import { ButtonModule } from 'primeng/button';
 import { ProductsListComponent } from './pages/products-list/products-list.component';
+import { CheckboxModule } from 'primeng/checkbox';
+import { FormsModule } from '@angular/forms';
+import { ProductPageComponent } from './pages/product-page/product-page.component';
 
-const routes: Routes = [{ path: 'products', component: ProductsListComponent }];
+const routes: Routes = [{ path: 'products', component: ProductsListComponent }, {path: 'category/:id', component: ProductsListComponent}];
 
 @NgModule({
   imports: [
@@ -17,6 +20,8 @@ const routes: Routes = [{ path: 'products', component: ProductsListComponent }];
     HttpClientModule,
     RouterModule.forChild(routes),
     ButtonModule,
+    CheckboxModule,
+    FormsModule
   ],
   declarations: [
     ProductsSearchComponent,
@@ -24,6 +29,7 @@ const routes: Routes = [{ path: 'products', component: ProductsListComponent }];
     ProductItemComponent,
     FeaturedProductsComponent,
     ProductsListComponent,
+    ProductPageComponent,
   ],
   exports: [
     ProductsSearchComponent,
@@ -31,6 +37,7 @@ const routes: Routes = [{ path: 'products', component: ProductsListComponent }];
     ProductItemComponent,
     FeaturedProductsComponent,
     ProductsListComponent,
+    ProductPageComponent,
   ],
 })
 export class ProductsModule {}
