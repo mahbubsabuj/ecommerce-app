@@ -1,1 +1,22 @@
-<p>product-page works!</p>
+<div class="product-page" *ngIf="product">
+  <div class="grid">
+    <div class="col-6"></div>
+    <div class="col-6 product">
+      <h2>{{ product.name }}</h2>
+      <p class="product-desc">
+        {{ product.description }}
+      </p>
+      <div class="product-rating">
+        <p-rating
+          [(ngModel)]="product.rating"
+          [cancel]="false"
+          [disabled]="true"
+        ></p-rating>
+      </div>
+      <div class="product-price">
+        {{ product.price | currency }}
+        <span class="price-before">{{ product.price + 2 | currency}}</span>
+      </div>
+    </div>
+  </div>
+</div>
