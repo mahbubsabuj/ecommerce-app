@@ -1,0 +1,27 @@
+.categories-banner {
+  margin-top: 75px;
+  &-title {
+    margin-bottom: 20px;
+    color: var(--surface-700);
+  }
+  .category {
+    min-height: 100px;
+    border-radius: 14px;
+    background-color: var(--blue-500);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    &-icon {
+        .pi {
+            font-size: 2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+    }
+    &-name {
+        font-size: 1em;
+    }
+  }
+}
