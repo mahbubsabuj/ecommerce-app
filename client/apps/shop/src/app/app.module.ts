@@ -6,7 +6,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
 import { HomeComponent } from './pages/home/home.component';
-import { ProductListComponent } from './pages/product-list/product-list.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { UiModule } from '@client/ui';
@@ -18,10 +17,6 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
   },
-  {
-    path: 'products',
-    component: ProductListComponent,
-  },
 ];
 
 @NgModule({
@@ -29,7 +24,6 @@ const routes: Routes = [
     AppComponent,
     NxWelcomeComponent,
     HomeComponent,
-    ProductListComponent,
     HeaderComponent,
     FooterComponent,
     NavComponent,
