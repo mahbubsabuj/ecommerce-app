@@ -12,7 +12,8 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { RatingModule } from 'primeng/rating';
-
+import { InputNumberModule } from 'primeng/inputnumber';
+import { UiModule } from '@client/ui';
 const routes: Routes = [
   { path: 'products', component: ProductsListComponent },
   { path: 'category/:id', component: ProductsListComponent },
@@ -28,6 +29,8 @@ const routes: Routes = [
     CheckboxModule,
     FormsModule,
     RatingModule,
+    InputNumberModule,
+    UiModule,
   ],
   declarations: [
     ProductsSearchComponent,

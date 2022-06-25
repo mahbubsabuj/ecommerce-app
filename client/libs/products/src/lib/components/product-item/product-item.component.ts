@@ -7,4 +7,7 @@ import { Product } from '../../models/product.model';
 })
 export class ProductItemComponent {
   @Input() product: Product | null = null;
+  addToCart() {
+    console.log("YES");
+  }
 }

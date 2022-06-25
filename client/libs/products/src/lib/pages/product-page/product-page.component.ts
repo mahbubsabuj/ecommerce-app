@@ -9,6 +9,7 @@ import { ProductsService } from '../../services/products.service';
 })
 export class ProductPageComponent implements OnInit {
   product: Product | null = null;
+  quantity = 0;
   constructor(
     private productsService: ProductsService,
     private activatedRouteService: ActivatedRoute
@@ -22,7 +23,9 @@ export class ProductPageComponent implements OnInit {
       },
     });
   }
-  
+  addProductToCart() {
+    //
+  }
   private _getProduct(id: string) {
     this.productsService.getProduct(id).subscribe({
       next: (product) => {
@@ -30,4 +33,5 @@ export class ProductPageComponent implements OnInit {
       },
     });
   }
+  
 }
