@@ -10,4 +10,4 @@
 
 # Screenshots
 
-<img src="/client/screenshots/1.png" width="800px" />
+<img src="/client/screenshots/2.png" width="800px" />
