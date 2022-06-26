@@ -12,6 +12,7 @@ import { UiModule } from '@client/ui';
 import { ProductsModule } from '@client/products';
 import { AccordionModule } from 'primeng/accordion';
 import { NavComponent } from './shared/nav/nav.component';
+import { OrdersModule } from '@client/orders';
 const routes: Routes = [
   {
     path: '',
@@ -36,6 +37,7 @@ const routes: Routes = [
     UiModule,
     AccordionModule,
     ProductsModule,
+    OrdersModule
   ],
   providers: [],
   bootstrap: [AppComponent],
