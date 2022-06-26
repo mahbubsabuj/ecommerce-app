@@ -1,12 +1,5 @@
-<div class="gallery">
-    <div class="main-image">
-        <img src="" alt="" class="">
-    </div>
-    <div class="images">
-        <ul>
-            <li>
-                <img src="" alt="" class="">
-            </li>
-        </ul>
-    </div>
-</div>
+<p-galleria [value]="images">
+  <ng-template pTemplate="item" let-item>
+    <img [src]="item" [alt]="item" style="width: 100%; display: block" />
+  </ng-template>
+</p-galleria>
