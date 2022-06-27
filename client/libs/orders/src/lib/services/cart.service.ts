@@ -40,7 +40,7 @@ export class CartService {
     } else {
       cart.items.map((item) => {
         if (item.productId === cartItem.productId && item.quantity) {
-          ++item.quantity;
+          item.quantity += cartItem.quantity ? cartItem.quantity : 0;
         }
       });
     }
