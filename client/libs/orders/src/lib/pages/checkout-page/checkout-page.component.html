@@ -1,1 +1,95 @@
-<p>checkout-page works!</p>
+<div class="checkout-page">
+    <div>
+      <p-button label="Back to cart" icon="pi pi-arrow-left" (onClick)="backToCart()"></p-button>
+    </div>
+    <div class="grid checkout-form">
+      <div class="col-8">
+        <form [formGroup]="checkoutForm">
+          <div class="p-fluid p-formgrid grid">
+            <div class="field col-4">
+              <label for="name">Name</label>
+              <input formControlName="name" id="name" type="text" pInputText />
+              <small *ngIf="checkoutForm.controls['name'].invalid && isFormSubmitted" class="p-error"
+                >Name is required</small
+              >
+            </div>
+            <div class="field col-4">
+              <label for="email">Email</label>
+              <input formControlName="email" id="email" type="text" pInputText />
+              <small *ngIf="checkoutForm.controls['email'].invalid && isFormSubmitted" class="p-error"
+                ><span *ngIf="checkoutForm.controls['email'].errors && checkoutForm.controls['email'].errors['required']">email is required</span>
+                <span *ngIf="checkoutForm.controls['email'].errors && checkoutForm.controls['email'].errors['email']">email is invalid</span></small
+              >
+            </div>
+            <div class="field col-4">
+              <label for="color">Phone</label><br />
+              <p-inputMask
+                mask="(880) 999-9999999"
+                formControlName="phone"
+                placeholder="(880) 111-1111111"
+              ></p-inputMask>
+              <small *ngIf="checkoutForm.controls['phone'].invalid && isFormSubmitted" class="p-error"
+                >phone is required</small
+              >
+            </div>
+          </div>
+          <div class="p-fluid p-formgrid grid">
+            <div class="field col-4">
+              <label for="street">Street</label>
+              <input formControlName="street" id="street" type="text" pInputText />
+              <small *ngIf="checkoutForm.controls['street'].invalid && isFormSubmitted" class="p-error"
+                >Street is required</small
+              >
+            </div>
+            <div class="field col-4">
+              <label for="street">Apartment</label>
+              <input formControlName="apartment" id="apartment" type="text" pInputText />
+              <small *ngIf="checkoutForm.controls['apartment'].invalid && isFormSubmitted" class="p-error"
+                >Apartment is required</small
+              >
+            </div>
+            <div class="field col-4">
+              <label for="street">Zip Code</label>
+              <input formControlName="zip" id="zip" type="text" pInputText />
+              <small *ngIf="checkoutForm.controls['zip'].invalid && isFormSubmitted" class="p-error"
+                >Zip is required</small
+              >
+            </div>
+            <div class="field col-4">
+              <label for="city">City</label>
+              <br />
+              <input formControlName="city" id="city" type="text" pInputText />
+              <small *ngIf="checkoutForm.controls['city'].invalid && isFormSubmitted" class="p-error"
+                >City is required</small
+              >
+            </div>
+            <div class="field col-4">
+                <label for="country">Country</label>
+                <br />
+                <p-dropdown
+                  [options]="countries"
+                  formControlName="country"
+                  [filter]="true"
+                  filterBy="name.common"
+                  optionLabel="name.common"
+                  optionValue="name.common"
+                  placeholder="Select a country"
+                ></p-dropdown>
+                <small
+                  *ngIf="checkoutForm.controls['country'].invalid && isFormSubmitted"
+                  class="p-error"
+                  >Country is required</small
+                >
+              </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-4">
+        <client-order-summary></client-order-summary>
+        <div class="checkout-button">
+          <p-button label="Place-Order" (onClick)="placeOrder()"></p-button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
