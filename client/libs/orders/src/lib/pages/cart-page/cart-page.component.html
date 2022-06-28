@@ -10,7 +10,7 @@
         </p-button>
       </div>
       <div>
-        <h4>My Cart: {{ 2 }} Item(s)</h4>
+        <h4>My Cart: {{ cartCount }} Item(s)</h4>
       </div>
       <div class="cart-shipping mb-5">Shipping after payment.....</div>
       <div class="cart-item mb-2" *ngFor="let cartItem of cartItemsDetails">
@@ -30,7 +30,7 @@
             <div class="cart-item-remove">
               <p-button
                 icon="pi pi-trash"
-                (onClick)="deleteCartItem()"
+                (onClick)="deleteCartItem(cartItem.product._id)"
               ></p-button>
             </div>
           </div>
@@ -43,6 +43,7 @@
                 inputId="minmax-buttons"
                 [min]="1"
                 [max]="100"
+                (onInput)="updateCartItemQuantity(cartItem)"
               >
               </p-inputNumber>
             </div>
@@ -55,6 +56,8 @@
         </div>
       </div>
     </div>
-    <div class="col-4"></div>
+    <div class="col-4">
+      <client-order-summary></client-order-summary>
+    </div>
   </div>
 </div>

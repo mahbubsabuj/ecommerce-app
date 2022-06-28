@@ -9,7 +9,7 @@ import { OrdersService } from '../../services/orders.service';
   templateUrl: './cart-page.component.html',
 })
 export class CartPageComponent implements OnInit {
-  quantity = 1;
+  cartCount = 1;
   cartItemsDetails: CartItemDetails[] = [];
   constructor(
     private routerService: Router,
@@ -22,25 +22,33 @@ export class CartPageComponent implements OnInit {
   backToShop() {
     this.routerService.navigateByUrl('/products');
   }
-  deleteCartItem() {
-    //
+  deleteCartItem(id: string) {
+    this.cartService.deleteCartItem(id);
+  }
+  updateCartItemQuantity(cartItemDetails: CartItemDetails) {
+    this.cartService.setCartItem(
+      {
+        productId: cartItemDetails.product._id,
+        quantity: cartItemDetails.quantity,
+      },
+      true
+    );
   }
   private _getCartDetails() {
     this.cartService.cart$.subscribe((cart) => {
-      console.log('H', cart);
+      this.cartItemsDetails = [];
+      this.cartCount = cart.items.length;
       cart.items.forEach((item) => {
-        console.log(
-          this.ordersService
-            .getProduct(item.productId === undefined ? '' : item.productId)
-            .subscribe({
-              next: (product) => {
-                this.cartItemsDetails.push({
-                  product: product,
-                  quantity: item.quantity ? item.quantity : 0,
-                });
-              },
-            })
-        );
+        this.ordersService
+          .getProduct(item.productId === undefined ? '' : item.productId)
+          .subscribe({
+            next: (product) => {
+              this.cartItemsDetails.push({
+                product: product,
+                quantity: item.quantity ? item.quantity : 0,
+              });
+            },
+          });
       });
     });
   }
